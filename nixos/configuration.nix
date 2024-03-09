@@ -8,6 +8,7 @@ in {
     ./hardware.nix
   ];
   environment.pathsToLink = [ "/libexec" ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   services.xserver = {
     enable = true;
