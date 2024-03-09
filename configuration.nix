@@ -4,8 +4,9 @@ let
   user = "rileymathews";
   hostname = "myhostname";
 in {
-  imports = ["${fetchTarball "https://github.com/NixOS/nixos-hardware/tarball/master"}/raspberry-pi/4"];
-  hardware.raspberry-pi."4".fkms-3d.enable = true;
+  imports = [
+    ./hardware.nix
+  ];
   environment.pathsToLink = [ "/libexec" ];
 
   services.xserver = {
@@ -16,6 +17,11 @@ in {
 
     desktopManager = {
       xterm.enable = false;
+      xfce = {
+        enable = true;
+        noDesktop = true;
+        enableXfwm = false;
+      };
     };
 
     displayManager.lightdm.enable = true;
